@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>James Kim | UC Berkeley M.E.T. Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #0f172a;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .clean-card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .clean-card-hover:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+            transform: translateY(-2px);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f8fafc;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="antialiased bg-white text-slate-900 selection:bg-slate-200">
+
+    <header class="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-slate-200 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Text-only Navigation (No square symbol) -->
+                <a href="#" class="flex items-center space-x-2 group">
+                    <span class="text-base font-bold tracking-tight text-slate-950 group-hover:text-slate-600 transition-colors">James Kim</span>
+                    <span class="text-slate-300 font-light">|</span>
+                    <span class="text-xs font-mono text-slate-600 tracking-wide">UC Berkeley M.E.T.</span>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-6 font-medium text-sm text-slate-600">
+                    <a href="#about" class="hover:text-slate-950 transition-colors">About</a>
+                    <a href="#education" class="hover:text-slate-950 transition-colors">Education</a>
+                    <a href="#experience" class="hover:text-slate-950 transition-colors">Experience</a>
+                    <a href="#leadership" class="hover:text-slate-950 transition-colors">Leadership</a>
+                    <a href="#projects" class="hover:text-slate-950 transition-colors">Projects</a>
+                    <a href="#skills" class="hover:text-slate-950 transition-colors">Skills</a>
+                    <a href="#contact" class="hover:text-slate-950 transition-colors">Contact</a>
+                </nav>
+
+                <!-- Header Action Buttons -->
+                <div class="hidden md:flex items-center space-x-3">
+                    <button onclick="copyEmail()" class="px-4 py-2 rounded-lg bg-slate-900 text-white font-medium text-xs hover:bg-slate-800 transition-colors">
+                        Copy Email
+                    </button>
+                    <a href="https://linkedin.com/in/jmismake" target="_blank" aria-label="LinkedIn Profile" class="w-9 h-9 rounded-lg border border-slate-200 flex items-center justify-center text-slate-600 hover:text-slate-950 hover:bg-slate-50 transition-all">
+                        <i class="fa-brands fa-linkedin text-sm"></i>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" aria-label="Toggle Navigation Menu" class="md:hidden p-2 rounded-lg text-slate-600 hover:text-slate-950 hover:bg-slate-100">
+                    <i class="fa-solid fa-bars text-lg" id="menuIcon"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3">
+            <a href="#about" class="mobile-nav-link block py-2 text-sm text-slate-600 hover:text-slate-900">About</a>
+            <a href="#education" class="mobile-nav-link block py-2 text-sm text-slate-600 hover:text-slate-900">Education</a>
+            <a href="#experience" class="mobile-nav-link block py-2 text-sm text-slate-600 hover:text-slate-900">Experience</a>
+            <a href="#leadership" class="mobile-nav-link block py-2 text-sm text-slate-600 hover:text-slate-900">Leadership</a>
+            <a href="#projects" class="mobile-nav-link block py-2 text-sm text-slate-600 hover:text-slate-900">Projects</a>
+            <a href="#skills" class="mobile-nav-link block py-2 text-sm text-slate-600 hover:text-slate-900">Skills</a>
+            <a href="#contact" class="mobile-nav-link block py-2 text-sm text-slate-600 hover:text-slate-900">Contact</a>
+            <div class="pt-2 flex items-center gap-3">
+                <button onclick="copyEmail()" class="flex-1 py-2.5 rounded-lg bg-slate-900 text-white text-xs font-medium">Copy Email</button>
+                <a href="https://linkedin.com/in/jmismake" target="_blank" class="px-4 py-2 rounded-lg border border-slate-200 text-center text-xs font-medium text-slate-700">LinkedIn</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div class="max-w-3xl space-y-6">
+            
+            <div class="inline-flex items-center gap-2 text-xs font-mono text-slate-500 tracking-wide uppercase">
+                <span>UC Berkeley M.E.T. Class of 2028</span>
+                <span>•</span>
+                <span>Mechanical Engineering & Business</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl font-extrabold text-slate-950 tracking-tight leading-none">
+                James Kim
+            </h1>
+
+            <p class="text-lg sm:text-xl text-slate-600 font-normal leading-relaxed">
+                Studying Mechanical Engineering and Business Administration in the Management, Entrepreneurship, & Technology (M.E.T.) dual degree program at UC Berkeley.
+            </p>
+
+            <p class="text-slate-600 text-base leading-relaxed">
+                Focused on hardware design, subsea robotics, thermal energy systems, dynamic load stress modeling (FEA), and engineering operations. Experienced in leading technical initiatives across research laboratories, aerospace student organizations, and military service as a Sergeant in the Republic of Korea Air Force.
+            </p>
+
+            <!-- Quick Academic Details -->
+            <div class="pt-4 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-slate-200 font-mono text-xs">
+                <div>
+                    <span class="text-slate-400 block">UNIVERSITY</span>
+                    <span class="font-semibold text-slate-900">UC Berkeley</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block">PROGRAM</span>
+                    <span class="font-semibold text-slate-900">M.E.T. Dual Degree</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block">GPA</span>
+                    <span class="font-semibold text-slate-900">3.55 / 4.0</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block">LOCATION</span>
+                    <span class="font-semibold text-slate-900">Berkeley, CA</span>
+                </div>
+            </div>
+
+            <!-- Call to Action Buttons -->
+            <div class="flex flex-wrap items-center gap-4 pt-4">
+                <a href="#projects" class="px-5 py-3 rounded-lg bg-slate-900 text-white font-medium text-sm hover:bg-slate-800 transition-colors flex items-center gap-2">
+                    <span>View Projects</span> <i class="fa-solid fa-arrow-down text-xs"></i>
+                </a>
+                <button onclick="copyEmail()" class="px-5 py-3 rounded-lg border border-slate-200 text-slate-700 hover:text-slate-950 hover:bg-slate-50 font-medium text-sm transition-colors flex items-center gap-2">
+                    <i class="fa-regular fa-envelope"></i> <span>Copy Email</span>
+                </button>
+                <a href="https://linkedin.com/in/jmismake" target="_blank" class="px-5 py-3 rounded-lg border border-slate-200 text-slate-700 hover:text-slate-950 hover:bg-slate-50 font-medium text-sm transition-colors flex items-center gap-2">
+                    <i class="fa-brands fa-linkedin text-base"></i> <span>LinkedIn</span>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="education" class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-t border-slate-200">
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold text-slate-950 tracking-tight">Education</h2>
+            <p class="text-sm text-slate-500 mt-1">Academic degree and foundational coursework.</p>
+        </div>
+
+        <div class="clean-card rounded-2xl p-6 sm:p-8 space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                <div>
+                    <!-- Workplace / Organization Bolded First -->
+                    <h3 class="text-lg font-bold text-slate-950">UC Berkeley Management, Entrepreneurship, & Technology (M.E.T.) Program</h3>
+                    <!-- Position / Degree Directly Below -->
+                    <p class="text-base font-semibold text-slate-700 mt-0.5">
+                        Dual Degree: B.S. Mechanical Engineering & B.S. Business Administration
+                    </p>
+                </div>
+                <span class="px-3.5 py-1.5 rounded-full text-xs font-mono bg-slate-100 text-slate-800 font-medium w-fit shrink-0">
+                    Expected May 2028
+                </span>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-6 py-4 border-y border-slate-100 text-sm font-mono">
+                <div>
+                    <span class="text-slate-400 text-xs block">GPA</span>
+                    <span class="text-slate-900 font-bold">3.55 / 4.0</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 text-xs block">LOCATION</span>
+                    <span class="text-slate-900 font-medium">Berkeley, CA</span>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <h4 class="text-xs font-mono text-slate-500 uppercase tracking-wider">Relevant Technical Coursework</h4>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-100 text-xs font-mono font-medium text-slate-700">Neural Networks & Deep Learning</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-100 text-xs font-mono font-medium text-slate-700">3D Design & Manufacturing</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-100 text-xs font-mono font-medium text-slate-700">Computer Programming for Engineers</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-100 text-xs font-mono font-medium text-slate-700">Intro to Solid Mechanics</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-100 text-xs font-mono font-medium text-slate-700">Fluid & Thermal Dynamics</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-t border-slate-200">
+        <div class="mb-10">
+            <h2 class="text-2xl font-bold text-slate-950 tracking-tight">Professional Experience</h2>
+            <p class="text-sm text-slate-500 mt-1">Research labs, engineering student teams, and military service, ordered by recency.</p>
+        </div>
+
+        <div class="space-y-6">
+            
+            <!-- 1. MTSN Lab -->
+            <div class="clean-card clean-card-hover rounded-2xl p-6 sm:p-8">
+                <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-4">
+                    <div>
+                        <!-- Organization Bolded First -->
+                        <h3 class="text-lg font-bold text-slate-950">MTSN LAB, UC Berkeley</h3>
+                        <!-- Title Directly Below -->
+                        <p class="text-base font-semibold text-slate-700 mt-0.5">Lab Assistant for Dr. Zarin</p>
+                    </div>
+                    <span class="text-xs font-mono text-slate-500 bg-slate-100 px-3 py-1 rounded-md w-fit shrink-0">June 2026 – Present</span>
+                </div>
+                <ul class="space-y-2 text-slate-600 text-sm list-disc list-inside leading-relaxed">
+                    <li>Designed and built a custom automated copper sample dispenser and sprayer from scratch in a 3-person team for precise direct-on-station material handling.</li>
+                    <li>Diagnosed sequential dispensing errors through high-speed video optics analysis and sample iterations, redesigning mechanisms to achieve 100% reliable automated operation.</li>
+                    <li>Analyzed solution-coated copper samples across various environmental conditions to evaluate coating durability and optimize thermal energy efficiency.</li>
+                </ul>
+            </div>
+
+            <!-- 2. Underwater Robotics at Berkeley -->
+            <div class="clean-card clean-card-hover rounded-2xl p-6 sm:p-8">
+                <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-4">
+                    <div>
+                        <!-- Organization Bolded First -->
+                        <h3 class="text-lg font-bold text-slate-950">Underwater Robotics at Berkeley</h3>
+                        <!-- Title Directly Below -->
+                        <p class="text-base font-semibold text-slate-700 mt-0.5">Mechanical Designer & Program Manager</p>
+                    </div>
+                    <span class="text-xs font-mono text-slate-500 bg-slate-100 px-3 py-1 rounded-md w-fit shrink-0">August 2025 – Present</span>
+                </div>
+                <ul class="space-y-2 text-slate-600 text-sm list-disc list-inside leading-relaxed">
+                    <li>Engineered a custom underwater claw mechanism to meet upgraded 2026 RoboSub competition requirements, overcoming previous design payload retrieval limitations.</li>
+                    <li>Identified micro-leaks caused by ambient hydrostatic pressure during post-competition analysis; redesigned housing seal mechanisms for deeper underwater limits.</li>
+                    <li>Developed autonomous subsea target retrieval systems to advance real-world search, payload manipulation, and ocean recovery capabilities.</li>
+                </ul>
+            </div>
+
+            <!-- 3. Space Enterprise at Berkeley -->
+            <div class="clean-card clean-card-hover rounded-2xl p-6 sm:p-8">
+                <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-4">
+                    <div>
+                        <!-- Organization Bolded First -->
+                        <h3 class="text-lg font-bold text-slate-950">Space Enterprise at Berkeley</h3>
+                        <!-- Title Directly Below -->
+                        <p class="text-base font-semibold text-slate-700 mt-0.5">Mechanical Designer</p>
+                    </div>
+                    <span class="text-xs font-mono text-slate-500 bg-slate-100 px-3 py-1 rounded-md w-fit shrink-0">August 2025 – Present</span>
+                </div>
+                <ul class="space-y-2 text-slate-600 text-sm list-disc list-inside leading-relaxed">
+                    <li>Designed and produced launch towers and hold-down mechanisms to hold the launch of solid and liquid fuel rockets under dynamic strain and stress loads.</li>
+                    <li>Utilized SolidWorks and Fusion 360 to perform Finite Element Analysis (FEA) on structural assemblies to verify load limits during ignition.</li>
+                    <li>Applied DFMEA principles to enhance structure quality, mitigate failure modes, and lead collaborative scheduled work sessions.</li>
+                </ul>
+            </div>
+
+            <!-- 4. ROKAF -->
+            <div class="clean-card clean-card-hover rounded-2xl p-6 sm:p-8">
+                <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-4">
+                    <div>
+                        <!-- Organization Bolded First -->
+                        <h3 class="text-lg font-bold text-slate-950">Republic of Korea Air Force Service</h3>
+                        <!-- Title Directly Below -->
+                        <p class="text-base font-semibold text-slate-700 mt-0.5">Sergeant (E-5) / High-Pressure Utility Operator</p>
+                    </div>
+                    <span class="text-xs font-mono text-slate-500 bg-slate-100 px-3 py-1 rounded-md w-fit shrink-0">August 2023 – May 2025</span>
+                </div>
+                <ul class="space-y-2 text-slate-600 text-sm list-disc list-inside leading-relaxed">
+                    <li>Operated and maintained high-pressure boiler and heating systems, guaranteeing continuous, safe, and efficient base performance.</li>
+                    <li>Commanded emergency response to a critical weekend diesel leak, implementing containment safety protocols and auxiliary supply routes to maintain uninterrupted boiler operation.</li>
+                    <li>Managed inspection and preventive maintenance schedules for base-wide HVAC systems and infrastructure, eliminating downtime for simulator labs and living quarters.</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="leadership" class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-t border-slate-200">
+        <div class="mb-10">
+            <h2 class="text-2xl font-bold text-slate-950 tracking-tight">Leadership & Community Impact</h2>
+            <p class="text-sm text-slate-500 mt-1">Campus orientation leadership, professional organization management, and community volunteer work.</p>
+        </div>
+
+        <div class="space-y-6">
+            
+            <!-- Leadership Item 1 -->
+            <div class="clean-card clean-card-hover rounded-2xl p-6 sm:p-8">
+                <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-4">
+                    <div>
+                        <!-- Organization Bolded First -->
+                        <h3 class="text-lg font-bold text-slate-950">Berkeley International Office, UC Berkeley</h3>
+                        <!-- Title Directly Below -->
+                        <p class="text-base font-semibold text-slate-700 mt-0.5">Orientation Leader</p>
+                    </div>
+                    <span class="text-xs font-mono text-slate-500 bg-slate-100 px-3 py-1 rounded-md w-fit shrink-0">August 2026 – Present</span>
+                </div>
+                <ul class="space-y-2 text-slate-600 text-sm list-disc list-inside leading-relaxed">
+                    <li>Co-led orientation programming and cultural integration workshops for over 250 incoming international students transitioning to UC Berkeley.</li>
+                    <li>Managed event check-in logistics, facilitated interactive group sessions, and resolved student inquiries regarding academic and campus resources.</li>
+                </ul>
+            </div>
+
+            <!-- Leadership Item 2 -->
+            <div class="clean-card clean-card-hover rounded-2xl p-6 sm:p-8">
+                <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-4">
+                    <div>
+                        <!-- Organization Bolded First -->
+                        <h3 class="text-lg font-bold text-slate-950">American Society of Mechanical Engineers (ASME), UC Berkeley</h3>
+                        <!-- Title Directly Below -->
+                        <p class="text-base font-semibold text-slate-700 mt-0.5">Board Member, Program Manager</p>
+                    </div>
+                    <span class="text-xs font-mono text-slate-500 bg-slate-100 px-3 py-1 rounded-md w-fit shrink-0">August 2022 – May 2023</span>
+                </div>
+                <ul class="space-y-2 text-slate-600 text-sm list-disc list-inside leading-relaxed">
+                    <li>Managed project timelines and course funds to connect pre-professional students with UC Berkeley Mechanical Engineering department resources.</li>
+                    <li>Hosted top-tier engineering firms in career events with Mechanical Engineering faculty to improve student engagement and foster a vibrant on-campus community.</li>
+                    <li>Organized community events for 30+ participants including biweekly meetups, hikes, and annual trivia competitions.</li>
+                </ul>
+            </div>
+
+            <!-- Leadership Item 3 -->
+            <div class="clean-card clean-card-hover rounded-2xl p-6 sm:p-8">
+                <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-4">
+                    <div>
+                        <!-- Organization Bolded First -->
+                        <h3 class="text-lg font-bold text-slate-950">Chungbuk Hyeneung Orphanage (Cheong-ju, Korea)</h3>
+                        <!-- Title Directly Below -->
+                        <p class="text-base font-semibold text-slate-700 mt-0.5">Orphanage Volunteer</p>
+                    </div>
+                    <span class="text-xs font-mono text-slate-500 bg-slate-100 px-3 py-1 rounded-md w-fit shrink-0">February 2024 – January 2025</span>
+                </div>
+                <ul class="space-y-2 text-slate-600 text-sm list-disc list-inside leading-relaxed">
+                    <li>Assisted in maintaining and organizing orphanage facilities to establish a clean, safe, and positive environment for children.</li>
+                    <li>Collaborated with facility staff and co-volunteers to foster a supportive and nurturing atmosphere for resident children.</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="projects" class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-t border-slate-200">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10">
+            <div>
+                <h2 class="text-2xl font-bold text-slate-950 tracking-tight">Featured Projects</h2>
+                <p class="text-sm text-slate-500 mt-1">Engineering project highlights ordered by recency. Click any card to open a detailed modal case study.</p>
+            </div>
+        </div>
+
+        <!-- 2-column grid format: 2 project cards on top, 1 card on bottom -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            
+            <!-- Project Card 1 -->
+            <div onclick="openModal('modal-copper-dispenser')" class="clean-card clean-card-hover rounded-2xl p-6 sm:p-7 cursor-pointer flex flex-col justify-between group">
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between text-xs font-mono text-slate-500">
+                        <span>JUNE 2026 – PRESENT</span>
+                        <span class="bg-slate-100 text-slate-800 px-2 py-0.5 rounded font-medium">MTSN LAB</span>
+                    </div>
+
+                    <h3 class="text-xl font-bold text-slate-950 group-hover:text-blue-600 transition-colors leading-snug">
+                        Automated Copper Sample Dispenser & Sprayer
+                    </h3>
+
+                    <!-- Key Accomplishment Bullet Points on Card Front -->
+                    <ul class="space-y-2 text-xs text-slate-600 list-disc list-inside leading-relaxed">
+                        <li>Designed automated direct-on-station copper sample material handling dispenser & sprayer.</li>
+                        <li>Diagnosed micro-dispensing mechanical jams using high-speed camera optics for 100% operational reliability.</li>
+                        <li>Evaluated thermal energy efficiency and coating durability across test conditions.</li>
+                    </ul>
+
+                    <!-- Mono font tags -->
+                    <div class="flex flex-wrap gap-1.5 pt-2">
+                        <span class="px-2.5 py-1 rounded bg-slate-100 text-[11px] font-mono text-slate-700">SolidWorks</span>
+                        <span class="px-2.5 py-1 rounded bg-slate-100 text-[11px] font-mono text-slate-700">High-Speed Optics</span>
+                        <span class="px-2.5 py-1 rounded bg-slate-100 text-[11px] font-mono text-slate-700">Thermal Energy</span>
+                    </div>
+                </div>
+
+                <div class="pt-5 flex items-center justify-between text-xs font-semibold text-slate-950 border-t border-slate-100 mt-6">
+                    <span>View Detailed Case Study →</span>
+                    <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform text-slate-700"></i>
+                </div>
+            </div>
+
+            <!-- Project Card 2 -->
+            <div onclick="openModal('modal-underwater-claw')" class="clean-card clean-card-hover rounded-2xl p-6 sm:p-7 cursor-pointer flex flex-col justify-between group">
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between text-xs font-mono text-slate-500">
+                        <span>AUGUST 2025 – PRESENT</span>
+                        <span class="bg-slate-100 text-slate-800 px-2 py-0.5 rounded font-medium">ROBOSUB</span>
+                    </div>
+
+                    <h3 class="text-xl font-bold text-slate-950 group-hover:text-blue-600 transition-colors leading-snug">
+                        Underwater Robot's Claw Mechanism
+                    </h3>
+
+                    <!-- Key Accomplishment Bullet Points on Card Front -->
+                    <ul class="space-y-2 text-xs text-slate-600 list-disc list-inside leading-relaxed">
+                        <li>Engineered custom subsea target retrieval claw fulfilling 2026 RoboSub requirements.</li>
+                        <li>Redesigned housing seal compression mechanisms to prevent deep hydrostatic pressure micro-leaks.</li>
+                        <li>Developed autonomous subsea target retrieval kinematics for deepwater search tasks.</li>
+                    </ul>
+
+                    <!-- Mono font tags -->
+                    <div class="flex flex-wrap gap-1.5 pt-2">
+                        <span class="px-2.5 py-1 rounded bg-slate-100 text-[11px] font-mono text-slate-700">Subsea Robotics</span>
+                        <span class="px-2.5 py-1 rounded bg-slate-100 text-[11px] font-mono text-slate-700">Hydrostatic Seals</span>
+                        <span class="px-2.5 py-1 rounded bg-slate-100 text-[11px] font-mono text-slate-700">Kinematics</span>
+                    </div>
+                </div>
+
+                <div class="pt-5 flex items-center justify-between text-xs font-semibold text-slate-950 border-t border-slate-100 mt-6">
+                    <span>View Detailed Case Study →</span>
+                    <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform text-slate-700"></i>
+                </div>
+            </div>
+
+            <!-- Project Card 3 (2nd Row) -->
+            <div onclick="openModal('modal-wind-turbine')" class="clean-card clean-card-hover rounded-2xl p-6 sm:p-7 cursor-pointer flex flex-col justify-between group">
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between text-xs font-mono text-slate-500">
+                        <span>1ST PLACE WINNER</span>
+                        <span class="bg-slate-100 text-slate-800 px-2 py-0.5 rounded font-medium">UC BERKELEY</span>
+                    </div>
+
+                    <h3 class="text-xl font-bold text-slate-950 group-hover:text-blue-600 transition-colors leading-snug">
+                        Topology-Optimized Wind Power Turbine
+                    </h3>
+
+                    <!-- Key Accomplishment Bullet Points on Card Front -->
+                    <ul class="space-y-2 text-xs text-slate-600 list-disc list-inside leading-relaxed">
+                        <li>Won 1st place in UC Berkeley design competition using topology-optimized blade geometry.</li>
+                        <li>Achieved peak competition power output of 65 Watts during wind tunnel aerodynamic testing.</li>
+                        <li>Optimized 3D printing polymer grain directions to maximize structural load capacity.</li>
+                    </ul>
+
+                    <!-- Mono font tags -->
+                    <div class="flex flex-wrap gap-1.5 pt-2">
+                        <span class="px-2.5 py-1 rounded bg-slate-100 text-[11px] font-mono text-slate-700">Topology Optimization</span>
+                        <span class="px-2.5 py-1 rounded bg-slate-100 text-[11px] font-mono text-slate-700">65W Output</span>
+                        <span class="px-2.5 py-1 rounded bg-slate-100 text-[11px] font-mono text-slate-700">3D Printing</span>
+                    </div>
+                </div>
+
+                <div class="pt-5 flex items-center justify-between text-xs font-semibold text-slate-950 border-t border-slate-100 mt-6">
+                    <span>View Detailed Case Study →</span>
+                    <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform text-slate-700"></i>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="skills" class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-t border-slate-200">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8">
+            <div>
+                <h2 class="text-2xl font-bold text-slate-950 tracking-tight">Technical Skills & Tools</h2>
+                <p class="text-sm text-slate-500 mt-1">CAD & simulation software, programming languages, and operational competencies.</p>
+            </div>
+            
+            <!-- Skill Category Filter Tabs -->
+            <div class="flex flex-wrap gap-2 mt-4 md:mt-0" id="skillFilters">
+                <button onclick="filterSkills('all')" class="skill-btn active px-3.5 py-1.5 rounded-lg text-xs font-mono bg-slate-900 text-white border border-slate-900 transition-colors">All</button>
+                <button onclick="filterSkills('cad')" class="skill-btn px-3.5 py-1.5 rounded-lg text-xs font-mono bg-white text-slate-600 border border-slate-200 hover:border-slate-400 transition-colors">CAD & Simulation</button>
+                <button onclick="filterSkills('code')" class="skill-btn px-3.5 py-1.5 rounded-lg text-xs font-mono bg-white text-slate-600 border border-slate-200 hover:border-slate-400 transition-colors">Programming</button>
+                <button onclick="filterSkills('lang')" class="skill-btn px-3.5 py-1.5 rounded-lg text-xs font-mono bg-white text-slate-600 border border-slate-200 hover:border-slate-400 transition-colors">Languages & Tools</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="skillsGrid">
+            
+            <!-- Card 1: CAD & Simulation -->
+            <div class="skill-card clean-card rounded-xl p-6 space-y-4" data-category="cad">
+                <h3 class="text-xs font-bold text-slate-950 uppercase tracking-wider font-mono">CAD & Simulation</h3>
+                <div class="flex flex-wrap gap-2 pt-1">
+                    <span class="px-3 py-1.5 rounded-md bg-slate-100 text-xs font-mono text-slate-800">SolidWorks</span>
+                    <span class="px-3 py-1.5 rounded-md bg-slate-100 text-xs font-mono text-slate-800">Fusion 360</span>
+                    <span class="px-3 py-1.5 rounded-md bg-slate-100 text-xs font-mono text-slate-800">FEA Analysis</span>
+                    <span class="px-3 py-1.5 rounded-md bg-slate-100 text-xs font-mono text-slate-800">CFD Dynamics</span>
+                    <span class="px-3 py-1.5 rounded-md bg-slate-100 text-xs font-mono text-slate-800">3D Design</span>
+                    <span class="px-3 py-1.5 rounded-md bg-slate-100 text-xs font-mono text-slate-800">G-Code</span>
+                    <span class="px-3 py-1.5 rounded-md bg-slate-100 text-xs font-mono text-slate-800">Topology Optimization</span>
+                    <span class="px-3 py-1.5 rounded-md bg-slate-100 text-xs font-mono text-slate-800">DFMEA Principles</span>
+                </div>
+            </div>
+
+            <!-- Card 2: Programming -->
+            <div class="skill-card clean-card rounded-xl p-6 space-y-4" data-category="code">
+                <h3 class="text-xs font-bold text-slate-950 uppercase tracking-wider font-mono">Programming</h3>
+                <div class="flex flex-wrap gap-2 pt-1">
+                    <span class="px-3 py-1.5 rounded-md bg-slate-100 text-xs font-mono text-slate-800">Python</span>
+                    <span class="px-3 py-1.5 rounded-md bg-slate-100 text-xs font-mono text-slate-800">MATLAB</span>
+                    <span class="px-3 py-1.5 rounded-md bg-slate-100 text-xs font-mono text-slate-800">C</span>
+                    <span class="px-3 py-1.5 rounded-md bg-slate-100 text-xs font-mono text-slate-800">C++</span>
+                    <span class="px-3 py-1.5 rounded-md bg-slate-100 text-xs font-mono text-slate-800">Java</span>
+                    <span class="px-3 py-1.5 rounded-md bg-slate-100 text-xs font-mono text-slate-800">JavaScript</span>
+                    <span class="px-3 py-1.5 rounded-md bg-slate-100 text-xs font-mono text-slate-800">Neural Networks</span>
+                </div>
+            </div>
+
+            <!-- Card 3: Languages & Tools -->
+            <div class="skill-card clean-card rounded-xl p-6 space-y-4" data-category="lang">
+                <h3 class="text-xs font-bold text-slate-950 uppercase tracking-wider font-mono">Languages & Tools</h3>
+                <div class="flex flex-wrap gap-2 pt-1">
+                    <span class="px-3 py-1.5 rounded-md bg-slate-100 text-xs font-mono text-slate-800">Fluent English</span>
+                    <span class="px-3 py-1.5 rounded-md bg-slate-100 text-xs font-mono text-slate-800">Fluent Korean</span>
+                    <span class="px-3 py-1.5 rounded-md bg-slate-100 text-xs font-mono text-slate-800">High-Pressure HVAC</span>
+                    <span class="px-3 py-1.5 rounded-md bg-slate-100 text-xs font-mono text-slate-800">Manufacturing Design</span>
+                    <span class="px-3 py-1.5 rounded-md bg-slate-100 text-xs font-mono text-slate-800">Microsoft Excel</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-t border-slate-200">
+        <div class="clean-card rounded-2xl p-8 sm:p-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                
+                <div class="lg:col-span-5 space-y-6">
+                    <div>
+                        <span class="text-xs font-mono text-slate-500 uppercase">GET IN TOUCH</span>
+                        <h2 class="text-3xl font-bold text-slate-950 mt-1">Let's Connect</h2>
+                    </div>
+                    
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        I am open to discussing mechanical design, subsea robotics, automated hardware, thermal energy systems, or internship and co-op opportunities.
+                    </p>
+
+                    <div class="space-y-3 pt-2 font-mono text-xs">
+                        <div class="p-3.5 rounded-lg border border-slate-200 flex items-center justify-between bg-slate-50/50">
+                            <div>
+                                <span class="text-slate-400 block">EMAIL</span>
+                                <span class="text-slate-900 font-semibold select-all">jmismake@berkeley.edu</span>
+                            </div>
+                            <button onclick="copyEmail()" class="text-slate-600 hover:text-slate-950 text-sm px-2 py-1" title="Copy Email">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                        </div>
+
+                        <div class="p-3.5 rounded-lg border border-slate-200 bg-slate-50/50">
+                            <span class="text-slate-400 block">PHONE</span>
+                            <span class="text-slate-900 font-semibold">(510) 501-2095</span>
+                        </div>
+
+                        <div class="p-3.5 rounded-lg border border-slate-200 bg-slate-50/50">
+                            <span class="text-slate-400 block">LINKEDIN</span>
+                            <a href="https://linkedin.com/in/jmismake" target="_blank" class="text-blue-600 hover:underline font-semibold">linkedin.com/in/jmismake</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7">
+                    <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-mono text-slate-500 mb-1">YOUR NAME</label>
+                                <input type="text" required placeholder="Jane Doe" class="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-slate-900 focus:outline-none focus:border-slate-900 text-sm bg-slate-50/50">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-mono text-slate-500 mb-1">EMAIL ADDRESS</label>
+                                <input type="email" required placeholder="jane@example.com" class="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-slate-900 focus:outline-none focus:border-slate-900 text-sm bg-slate-50/50">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono text-slate-500 mb-1">SUBJECT</label>
+                            <input type="text" required placeholder="Engineering Inquiry / Collaboration" class="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-slate-900 focus:outline-none focus:border-slate-900 text-sm bg-slate-50/50">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono text-slate-500 mb-1">MESSAGE</label>
+                            <textarea rows="4" required placeholder="Hello James..." class="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-slate-900 focus:outline-none focus:border-slate-900 text-sm bg-slate-50/50 resize-none"></textarea>
+                        </div>
+
+                        <button type="submit" id="submitBtn" class="w-full py-3 rounded-lg bg-slate-900 text-white font-medium text-sm hover:bg-slate-800 transition-colors flex items-center justify-center gap-2">
+                            <span>Send Message</span> <i class="fa-solid fa-paper-plane text-xs"></i>
+                        </button>
+                    </form>
+
+                    <div id="formSuccess" class="hidden p-6 rounded-lg border border-slate-200 text-center space-y-2 bg-slate-50">
+                        <i class="fa-solid fa-circle-check text-slate-900 text-2xl"></i>
+                        <h4 class="text-slate-950 font-bold">Message Sent</h4>
+                        <p class="text-slate-600 text-xs">Thank you for reaching out. James will get back to you shortly.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-slate-200 py-8 px-4 font-mono text-xs text-slate-500 text-center">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                © 2026 James Kim. UC Berkeley M.E.T.
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="https://linkedin.com/in/jmismake" target="_blank" class="hover:text-slate-950">LinkedIn</a>
+                <span>•</span>
+                <a href="mailto:jmismake@berkeley.edu" class="hover:text-slate-950">Email</a>
+                <span>•</span>
+                <a href="#" class="hover:text-slate-950">Back to top ↑</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Modal 1: Automated Copper Sample Dispenser -->
+    <div id="modal-copper-dispenser" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm">
+        <div class="bg-white max-w-xl w-full rounded-2xl p-6 sm:p-8 space-y-5 border border-slate-200 max-h-[90vh] overflow-y-auto shadow-2xl relative">
+            <button onclick="closeModal('modal-copper-dispenser')" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:text-slate-950 flex items-center justify-center">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+            <div>
+                <span class="text-xs font-mono text-slate-500 uppercase">MTSN Lab | Dr. Zarin's Group</span>
+                <h3 class="text-xl font-bold text-slate-950 mt-1">Automated Copper Sample Dispenser & Sprayer</h3>
+            </div>
+            <div class="space-y-3 text-sm text-slate-600 leading-relaxed">
+                <p><strong>Overview:</strong> Built an automated direct-on-station copper sample material handling dispenser and sprayer apparatus to evaluate thermal energy coating durability.</p>
+                <p><strong>Technical Accomplishments:</strong></p>
+                <ul class="list-disc list-inside space-y-1 text-slate-600 text-xs">
+                    <li>Utilized high-speed camera video optics to capture micro-dispensing mechanical jams.</li>
+                    <li>Redesigned sample feed mechanisms to achieve 100% reliable automated operation.</li>
+                    <li>Analyzed coating performance across environmental test chambers to evaluate thermal efficiency gains.</li>
+                </ul>
+            </div>
+            <div class="pt-3 border-t border-slate-100 flex justify-end">
+                <button onclick="closeModal('modal-copper-dispenser')" class="px-4 py-2 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-medium">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Underwater Robot's Claw -->
+    <div id="modal-underwater-claw" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm">
+        <div class="bg-white max-w-xl w-full rounded-2xl p-6 sm:p-8 space-y-5 border border-slate-200 max-h-[90vh] overflow-y-auto shadow-2xl relative">
+            <button onclick="closeModal('modal-underwater-claw')" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:text-slate-950 flex items-center justify-center">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+            <div>
+                <span class="text-xs font-mono text-slate-500 uppercase">Underwater Robotics at Berkeley</span>
+                <h3 class="text-xl font-bold text-slate-950 mt-1">Underwater Robot's Claw</h3>
+            </div>
+            <div class="space-y-3 text-sm text-slate-600 leading-relaxed">
+                <p><strong>Overview:</strong> Engineered an underwater payload retrieval claw to fulfill upgraded 2026 RoboSub competition requirements.</p>
+                <p><strong>Technical Accomplishments:</strong></p>
+                <ul class="list-disc list-inside space-y-1 text-slate-600 text-xs">
+                    <li>Diagnosed micro-leaks caused by ambient hydrostatic pressure during post-competition testing.</li>
+                    <li>Redesigned housing compression seal mechanisms to support deeper underwater operational limits.</li>
+                    <li>Integrated autonomous subsea target retrieval capabilities for underwater search and recovery tasks.</li>
+                </ul>
+            </div>
+            <div class="pt-3 border-t border-slate-100 flex justify-end">
+                <button onclick="closeModal('modal-underwater-claw')" class="px-4 py-2 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-medium">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3: Wind Turbine -->
+    <div id="modal-wind-turbine" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm">
+        <div class="bg-white max-w-xl w-full rounded-2xl p-6 sm:p-8 space-y-5 border border-slate-200 max-h-[90vh] overflow-y-auto shadow-2xl relative">
+            <button onclick="closeModal('modal-wind-turbine')" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:text-slate-950 flex items-center justify-center">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+            <div>
+                <span class="text-xs font-mono text-slate-500 uppercase">UC Berkeley Competition Winner</span>
+                <h3 class="text-xl font-bold text-slate-950 mt-1">Topology-Optimized Wind Turbine</h3>
+            </div>
+            <div class="space-y-3 text-sm text-slate-600 leading-relaxed">
+                <p><strong>Overview:</strong> Designed and won the UC Berkeley wind turbine competition using structural topology optimization techniques to convert aerodynamic flow efficiently into rotational power.</p>
+                <p><strong>Technical Accomplishments:</strong></p>
+                <ul class="list-disc list-inside space-y-1 text-slate-600 text-xs">
+                    <li>Achieved peak competition power output of 65 Watts.</li>
+                    <li>Created CAD models in SolidWorks to guarantee structural interoperability with peer subsystem designs.</li>
+                    <li>Manufactured components via 3D printing, evaluating polymer grain direction and material properties to maximize structural load capacity.</li>
+                </ul>
+            </div>
+            <div class="pt-3 border-t border-slate-100 flex justify-end">
+                <button onclick="closeModal('modal-wind-turbine')" class="px-4 py-2 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-medium">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification for Email Copy -->
+    <div id="toastNotification" class="fixed bottom-6 right-6 z-50 hidden bg-slate-900 text-white px-4 py-3 rounded-lg text-xs font-mono flex items-center gap-2 shadow-lg">
+        <i class="fa-solid fa-check text-green-400"></i>
+        <span>Copied email (jmismake@berkeley.edu) to clipboard</span>
+    </div>
+
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.className = 'fa-solid fa-bars text-lg';
+            } else {
+                menuIcon.className = 'fa-solid fa-xmark text-lg';
+            }
+        });
+
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.className = 'fa-solid fa-bars text-lg';
+            });
+        });
+
+        function filterSkills(category) {
+            const cards = document.querySelectorAll('.skill-card');
+            const btns = document.querySelectorAll('.skill-btn');
+
+            btns.forEach(btn => {
+                btn.classList.remove('bg-slate-900', 'text-white', 'border-slate-900');
+                btn.classList.add('bg-white', 'text-slate-600', 'border-slate-200');
+            });
+
+            event.target.classList.add('bg-slate-900', 'text-white', 'border-slate-900');
+            event.target.classList.remove('bg-white', 'text-slate-600', 'border-slate-200');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function copyEmail() {
+            const email = "jmismake@berkeley.edu";
+            const tempInput = document.createElement("input");
+            tempInput.value = email;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            const toast = document.getElementById('toastNotification');
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const form = document.getElementById('contactForm');
+            const successMsg = document.getElementById('formSuccess');
+
+            form.classList.add('hidden');
+            successMsg.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
