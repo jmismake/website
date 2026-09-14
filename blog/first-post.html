@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Designing Subsea Kinematics | James Kim</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #ffffff; color: #0f172a; font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="antialiased bg-white text-slate-900">
+
+    <!-- Header Navigation -->
+    <header class="border-b border-slate-200 py-4">
+        <div class="max-w-3xl mx-auto px-4 flex items-center justify-between font-mono text-xs">
+            <a href="index.html" class="text-slate-600 hover:text-slate-950">← All Posts</a>
+            <a href="../index.html" class="text-slate-600 hover:text-slate-950">Portfolio Main</a>
+        </div>
+    </header>
+
+    <!-- Article Content -->
+    <article class="max-w-3xl mx-auto px-4 py-16 space-y-6">
+        <header class="space-y-3">
+            <div class="flex items-center gap-3 text-xs font-mono text-slate-500">
+                <span>September 14, 2026</span>
+                <span>•</span>
+                <span class="bg-slate-100 text-slate-800 px-2 py-0.5 rounded">Robotics</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-950 tracking-tight">
+                Designing Subsea Kinematics for RoboSub
+            </h1>
+        </header>
+
+        <div class="text-slate-700 text-base leading-relaxed space-y-4 pt-6 border-t border-slate-100">
+            <p>
+                Developing mechanisms for subsea robotics introduces strict design boundaries—mainly hydrostatic seal durability and structural integrity under dynamic load stresses.
+            </p>
+
+            <h2 class="text-xl font-bold text-slate-950 pt-4">Mitigating Ambient Hydrostatic Leaks</h2>
+            <p>
+                When engineering sealing housing mechanisms for subsea operations, compression force distribution must be precise to withstand ambient water depth pressure.
+            </p>
+        </div>
+    </article>
+
+</body>
+</html>

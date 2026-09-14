@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 1. EDIT: BROWSER TAB TITLE -->
+    <title>Designing Subsea Kinematics | James Kim</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased bg-white text-slate-900 font-sans">
+
+    <!-- Header Navigation -->
+    <header class="border-b border-slate-200 py-4 sticky top-0 bg-white/95 backdrop-blur-md z-10">
+        <div class="max-w-3xl mx-auto px-4 flex items-center justify-between font-mono text-xs">
+            <a href="../" class="text-slate-600 hover:text-slate-950 font-medium">← Back to Blog</a>
+            <a href="../../" class="text-slate-600 hover:text-slate-950 font-medium">Portfolio Home</a>
+        </div>
+    </header>
+
+    <article class="max-w-3xl mx-auto px-4 py-12 space-y-8">
+        
+        <!-- Header Info -->
+        <header class="space-y-4">
+            <div class="flex items-center gap-3 text-xs font-mono text-slate-500">
+                <!-- 2. EDIT: DATE & CATEGORY -->
+                <span>September 14, 2026</span>
+                <span>•</span>
+                <span class="bg-slate-100 text-slate-800 px-2.5 py-0.5 rounded font-medium">Robotics</span>
+            </div>
+            
+            <!-- 3. EDIT: POST TITLE -->
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-950 tracking-tight leading-tight">
+                Designing Subsea Kinematics for RoboSub
+            </h1>
+        </header>
+
+        <!-- 4. EDIT: MAIN COVER IMAGE -->
+        <figure class="space-y-2">
+            <img src="cover.jpg" alt="RoboSub Claw Mechanism" class="w-full h-auto rounded-xl border border-slate-200 object-cover">
+            <figcaption class="text-center text-xs font-mono text-slate-400">Custom claw mechanism engineered for hydrostatic pressure resistance.</figcaption>
+        </figure>
+
+        <!-- 5. EDIT: BODY TEXT & INLINE IMAGES -->
+        <div class="text-slate-700 text-base leading-relaxed space-y-6 pt-4 border-t border-slate-100">
+            <p>
+                Developing subsea hardware requires balancing mechanical strength with watertight isolation. In this post, I detail how we redesigned housing seals to prevent micro-leaks during deepwater operation.
+            </p>
+
+            <h2 class="text-xl font-bold text-slate-950 pt-2">Hydrostatic Compression Seals</h2>
+            <p>
+                Under deep ambient pressures, standard O-ring configurations can deform without uniform compression support. By shifting to custom seal geometry, we maintained consistent sealing limits.
+            </p>
+
+            <!-- Inline Image Example -->
+            <figure class="my-6 space-y-2">
+                <img src="diagram.png" alt="Seal Assembly Diagram" class="w-full h-auto rounded-lg border border-slate-200">
+                <figcaption class="text-xs font-mono text-slate-400">Figure 1: Cross-section CAD diagram of the redesigned seal assembly.</figcaption>
+            </figure>
+
+            <p>
+                Testing under high-pressure chambers verified zero fluid penetration across extended duty cycles.
+            </p>
+        </div>
+    </article>
+
+</body>
+</html>
